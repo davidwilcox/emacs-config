@@ -441,3 +441,8 @@ already have an include guard, the behavior is unspecified."
         (delete-region (point) (line-end-position))))))
 
 (global-set-key [f9] 'update-axle-include-guard)
+
+
+(setq ns-option-modifier 'meta
+          ;; The following allows accented input etc.
+          ns-right-option-modifier nil)
