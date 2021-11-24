@@ -11,7 +11,6 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (custom-set-faces
-
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
@@ -34,6 +33,8 @@
  '(current-language-environment "UTF-8")
  '(default-input-method "rfc1345")
  '(global-font-lock-mode t nil (font-lock))
+ '(package-selected-packages
+   '(yaml-mode writegood-mode wgrep-ack php-mode lua-mode clang-format bison-mode ack-and-a-half))
  '(show-paren-mode t nil (paren))
  '(show-trailing-whitespace t)
  '(transient-mark-mode t))
@@ -385,8 +386,8 @@ and idl, so I don't know how good it is."
 
 (setq package-archives '(;;("ELPA"      . "http://tromey.com/elpa/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa"     . "http://melpa.milkbox.net/packages/")
-                         ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
+                         ("melpa"     . "http://melpa.org/packages/")
+                         ("melpa-stable" . "http://stable.melpa.org/packages/")
                          ("org"       . "http://orgmode.org/elpa/")
                          ("gnu"       . "http://elpa.gnu.org/packages/")))
 
