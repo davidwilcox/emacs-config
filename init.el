@@ -1,5 +1,7 @@
 (global-set-key [?\C-\M-j] 'backward-sexp)
 (global-set-key [?\C-\M-k] 'forward-sexp)
+(global-set-key [f6] 'org-d20-roll)
+(global-set-key [f7] 'org-d20-initiative)
 (global-set-key [f5] 'goto-line)
 (global-set-key [?\C-x ?\C-f] 'ffap)
 ;(add-hook 'c-mode-common-hook
@@ -22,6 +24,7 @@
 
 ; (rtags-enable-standard-keybindings c-mode-base-map)
 
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -34,11 +37,32 @@
  '(default-input-method "rfc1345")
  '(global-font-lock-mode t nil (font-lock))
  '(package-selected-packages
-   '(yaml-mode writegood-mode wgrep-ack php-mode lua-mode clang-format bison-mode ack-and-a-half))
+   '(zoom zoom-frm org-d20 improv-rez axle yaml-mode writegood-mode wgrep-ack php-mode lua-mode clang-format bison-mode ack-and-a-half))
+ '(safe-local-variable-values
+   '((org-d20-party
+      ("Vieren" . 1)
+      ("Thurrig" . 2)
+      ("Deneith" . 0)
+      ("Doragin" . 0)
+      ("Luth" . 1)
+      ("Collin" . 4))
+     (org-d20-party
+      ("Vieren" . 0)
+      ("Thurrig" . 1))))
  '(show-paren-mode t nil (paren))
  '(show-trailing-whitespace t)
  '(transient-mark-mode t))
 
+(global-set-key (kbd "C-x i") (lambda ()
+                                (interactive)
+                                (other-window -1)))
+
+(defun dnd-size ()
+  "Change font size to be bigger for dnd."
+  (interactive)
+  (set-face-attribute 'default nil :height 200))
+
+(set-face-attribute 'default nil :height 105)
 (defun kill-word (arg)
   "Kill characters forward until encountering the end of a word.
 With argument ARG, do this that many times."
@@ -384,11 +408,10 @@ and idl, so I don't know how good it is."
     )
 (add-to-list 'auto-mode-alist '("\\.\\(?:ice\\)\\'" . slice-mode))
 
-(setq package-archives '(;;("ELPA"      . "http://tromey.com/elpa/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
+(setq package-archives '(
                          ("melpa"     . "http://melpa.org/packages/")
                          ("melpa-stable" . "http://stable.melpa.org/packages/")
-                         ("org"       . "http://orgmode.org/elpa/")
+                         ("ADOBE"     . "https://axle.corp.adobe.com/elpa/")
                          ("gnu"       . "http://elpa.gnu.org/packages/")))
 
 (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG\\'" . log-edit-mode))
@@ -423,6 +446,7 @@ and idl, so I don't know how good it is."
          (fn (replace-regexp-in-string "[^A-Z0-9_]" "_" fn ))
          (fn (replace-regexp-in-string "__+" "_" fn )))
     (format "%s_%X" fn (random))))
+
 
 (defun update-axle-include-guard ()
   "Update the include guard in a file to conform with the Axle coding standard.
